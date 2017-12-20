@@ -1,6 +1,6 @@
-// TypeScript file
-module mvc {
-    export interface Cache {
-        clear();
-    }
+/**
+ * 缓存
+ */
+interface Cache {
+    clear();
 }

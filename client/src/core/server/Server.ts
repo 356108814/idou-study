@@ -39,13 +39,13 @@ module core {
 		private onMessage(message: any) {
 			Log.debug("server message: " + message);
 
-			//解析类缓存
-			var builder = dcodeIO.ProtoBuf.loadProto(RES.getRes("user_proto"));
-			var User = builder.build("User");
-			var user = User.decode(message.buffer);
+			// //解析类缓存
+			// var builder = dcodeIO.ProtoBuf.loadProto(RES.getRes("user_proto"));
+			// var User = builder.build("User");
+			// var user = User.decode(message.buffer);
 
-			Log.debug(user);
-			Log.debug(user.username);
+			// Log.debug(user);
+			// Log.debug(user.username);
 		}
 
 		private onClose(message: any) {
