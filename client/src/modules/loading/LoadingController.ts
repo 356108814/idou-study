@@ -1,32 +1,33 @@
-class LoadingController extends Controller{
-	private loadingUI: LoadingUI;
+class LoadingController extends BaseController {
+	private loadingModule: LoadingModule;
+	private service: LoadingService;
 
 	public constructor() {
-		super();
+		super(ModuleName.Loading);
 	}
 
-	protected init() {
+	public init() {
 		this.service = new LoadingService();
 	}
 
-	public initView(): View {
-		this.loadingUI = new LoadingUI();
-		return this.loadingUI;
+	public createModule(): BaseModule {
+		this.loadingModule = new LoadingModule();
+		return this.loadingModule;
 	}
 
 	public addEventListener() {
-		Core.Dispatcher.addListener(EventName.UI_MAIN_UI, this.onViewHandler)
-		Core.Dispatcher.addListener(EventName.LOADING_PROGRESS, this.onProgressHandler)
+		super.addEventListener();
+		EventCenter.addListener(EventName.LOADING_PROGRESS, this.onProgressHandler, this)
 	}
 
 	public removeEventListener() {
-		
+		super.removeEventListener();
 	}
 
 	private onProgressHandler(e: DataEvent) {
 		let a = e.data as Array<number>;
 		let current = a[0];
 		let total = a[1];
-		this.loadingUI.setProgress(current, total);
+		this.loadingModule.setProgress(current, total);
 	}
 }

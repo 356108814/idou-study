@@ -10,12 +10,12 @@ class LoadingScene extends Scene {
 	}
 
 	public onEnter() {
-		Core.Dispatcher.dispatch(new DataEvent(EventName.UI_MAIN_UI, true));
+		EventCenter.dispatch(new DataEvent(EventName.MODULE_SHOW, [ModuleName.Loading, true]));
 		this.loadResource();
 	}
 
 	public onExit() {
-		Core.Dispatcher.dispatch(new DataEvent(EventName.UI_MAIN_UI, false));
+		EventCenter.dispatch(new DataEvent(EventName.MODULE_SHOW, [ModuleName.Loading, false]));
 	}
 
 	/**
@@ -92,7 +92,7 @@ class LoadingScene extends Scene {
      */
 	private onResourceProgress(event: RES.ResourceEvent): void {
 		if (event.groupName == "preload") {
-			Core.Dispatcher.dispatch(new DataEvent(EventName.LOADING_PROGRESS, [event.itemsLoaded, event.itemsTotal]));
+			EventCenter.dispatch(new DataEvent(EventName.LOADING_PROGRESS, [event.itemsLoaded, event.itemsTotal]));
 		}
 	}
 

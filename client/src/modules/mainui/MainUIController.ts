@@ -1,23 +1,19 @@
-class MainUIController extends Controller {
-	private mainUIView: MainUIView;
+class MainUIController extends BaseController {
+	private mainUIModule: MainUIModule;
 
 	public constructor() {
-		super();
+		super(ModuleName.MainUI);
 	}
 
-	protected init() {
+	public init() {
 	}
 
-	public initView(): View {
-		this.mainUIView = new MainUIView();
-		return this.mainUIView;
+	public createModule(): BaseModule {
+		this.mainUIModule = new MainUIModule();
+		return this.mainUIModule;
 	}
 
 	public addEventListener() {
-		Core.Dispatcher.addListener(EventName.UI_MAIN_UI, this.onViewHandler)
-	}
-
-	public removeEventListener() {
-
+		super.addEventListener();
 	}
 }

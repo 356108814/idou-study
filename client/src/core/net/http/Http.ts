@@ -38,7 +38,6 @@ class Http {
         let url = a[0];
         let method = (<string>a[1]) == "GET" ? egret.HttpMethod.GET : egret.HttpMethod.POST;
         let data = a[2];
-        Log.debug(typeof data);
         if (method == egret.HttpMethod.GET) {
             this.request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             if (typeof data === "string") {
@@ -46,7 +45,7 @@ class Http {
             } else if (typeof data === "object") {
                 var params = "?";
                 for (let k in data) {
-                    params += `${k}=${data[k]}&`
+                    params += `${k}=${data[k]}&`;
                 }
                 params = params.substr(0, params.length - 1);
                 url += params;
@@ -75,10 +74,10 @@ class Http {
             let netEventName = this.currentReqData[3];
             let handler = this.currentReqData[3];
             if (netEventName != null && netEventName != "") {
-                Core.Dispatcher.dispatch(new DataEvent(netEventName, data))
+                EventCenter.dispatchNet(new DataEvent(netEventName, data));
             }
             if (handler != null) {
-                (handler as Function).apply(data);
+                handler(data);
             }
         }
         Log.debug(data);

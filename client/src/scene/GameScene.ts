@@ -8,7 +8,7 @@ class GameScene extends Scene {
 
 	public onEnter() {
 		LayerManager.init();
-		Core.Dispatcher.dispatch(new DataEvent(EventName.UI_MAIN_UI, true))
+		EventCenter.dispatch(new DataEvent(EventName.MODULE_SHOW, [ModuleName.MainUI, true]))
 	}
 
 	public onExit() {

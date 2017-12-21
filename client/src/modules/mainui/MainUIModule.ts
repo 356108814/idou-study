@@ -1,7 +1,7 @@
 /**
  * 主界面视图
  */
-class MainUIView extends View {
+class MainUIModule extends BaseModule {
 	private textfield: egret.TextField;
 
 	public constructor() {

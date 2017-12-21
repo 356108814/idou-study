@@ -89,9 +89,9 @@ class Socket {
         this.reconnectCount = 0;
 
         if (this.connected && this.needReconnect) {
-            Core.NetDispatcher.dispatch(new DataEvent(SocketConst.SOCKET_RECONNECT));
+            EventCenter.dispatchNet(new DataEvent(SocketConst.SOCKET_RECONNECT));
         } else {
-            Core.NetDispatcher.dispatch(new DataEvent(SocketConst.SOCKET_CONNECT));
+            EventCenter.dispatchNet(new DataEvent(SocketConst.SOCKET_CONNECT));
         }
 
         this.connected = true;
@@ -108,10 +108,10 @@ class Socket {
         this.connected = false;
 
         if (this.needReconnect) {
-            Core.NetDispatcher.dispatch(new DataEvent(SocketConst.SOCKET_START_RECONNECT));
+            EventCenter.dispatchNet(new DataEvent(SocketConst.SOCKET_START_RECONNECT));
             this.reconnect();
         } else {
-            Core.NetDispatcher.dispatch(new DataEvent(SocketConst.SOCKET_CLOSE));
+            EventCenter.dispatchNet(new DataEvent(SocketConst.SOCKET_CLOSE));
         }
         let handler = this.handlers["CLOSE"];
         if (handler != null) {
@@ -126,7 +126,7 @@ class Socket {
         if (this.needReconnect) {
             this.reconnect();
         } else {
-            Core.NetDispatcher.dispatch(new DataEvent(SocketConst.SOCKET_NOCONNECT));
+            EventCenter.dispatchNet(new DataEvent(SocketConst.SOCKET_NOCONNECT));
         }
         this.connected = false;
         let handler = this.handlers["ERROR"];
@@ -163,9 +163,9 @@ class Socket {
         } else {
             this.reconnectCount = 0;
             if (this.connected) {
-                Core.NetDispatcher.dispatch(new DataEvent(SocketConst.SOCKET_CLOSE));
+                EventCenter.dispatchNet(new DataEvent(SocketConst.SOCKET_CLOSE));
             } else {
-                Core.NetDispatcher.dispatch(new DataEvent(SocketConst.SOCKET_NOCONNECT));
+                EventCenter.dispatchNet(new DataEvent(SocketConst.SOCKET_NOCONNECT));
             }
         }
     }

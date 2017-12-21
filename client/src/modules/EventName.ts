@@ -2,7 +2,15 @@ class EventName {
 	public constructor() {
 	}
 
-	public static UI_LOADING = "UI_LOADING";
+	/**
+	 * 模块显示/隐藏
+	 */
+	public static MODULE_SHOW = "MODULE_SHOW";
+
+	/**
+	 * 模块已显示/隐藏
+	 */
+	public static MODULE_SHOWED = "MODULE_SHOWED";
+
 	public static LOADING_PROGRESS = "LOADING_PROGRESS";
-	public static UI_MAIN_UI = "UI_MAIN_UI";
 }

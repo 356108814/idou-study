@@ -1,9 +1,6 @@
-class DataEvent {
-	public type: string;
-	public data: any;
+class DataEvent extends egret.Event {
 
-	public constructor(type: string, data?: any) {
-		this.type = type;
-		this.data = data;
+	public constructor(type: string, data?: any, bubbles?: boolean, cancelable?: boolean) {
+		super(type, bubbles, cancelable, data);
 	}
 }

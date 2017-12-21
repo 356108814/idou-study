@@ -1,8 +1,10 @@
-class LoadingUI extends View {
+/**
+ * 加载页
+ */
+class LoadingModule extends BaseModule {
 
     public constructor() {
         super(Global.stage);
-        this.createView();
     }
 
     private textField: egret.TextField;
