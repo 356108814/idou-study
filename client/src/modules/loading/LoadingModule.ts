@@ -10,15 +10,16 @@ class LoadingModule extends BaseModule {
     private textField: egret.TextField;
 
     public createView(): void {
-        this.textField = new egret.TextField();
-        this.addChild(this.textField);
-        this.textField.y = 300;
-        this.textField.width = 480;
-        this.textField.height = 100;
+
+        this.textField = UIFactory.createGTextField("", 0, 0, Global.stage.stageWidth, Global.stage.stageHeight);
         this.textField.textAlign = "center";
+        this.textField.verticalAlign = "middle";
+        this.addChild(this.textField);
+
     }
 
     public setProgress(current: number, total: number): void {
         this.textField.text = `Loading...${current}/${total}`;
     }
+
 }
